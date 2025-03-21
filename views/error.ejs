@@ -1,0 +1,7 @@
+<div class="error-container">
+    <h1><%= language === 'pt-BR' ? 'Erro' : 'Error' %></h1>
+    <p><%= error || (language === 'pt-BR' ? 'Algo deu errado.' : 'Something went wrong.') %></p>
+    <a href="/?lang=<%= language %>">
+        <%= language === 'pt-BR' ? 'Voltar para Home' : 'Back to Home' %>
+    </a>
+</div> 

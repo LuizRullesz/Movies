@@ -1,0 +1,23 @@
+<nav class="navbar">
+    <div class="container navbar-content">
+        <div class="nav-links">
+            <a href="/?type=all&lang=<%= language %>">Home</a>
+            <a href="/?type=movie&lang=<%= language %>">Filmes</a>
+            <a href="/?type=tv&lang=<%= language %>">Séries</a>
+        </div>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="pt-BR" <%= language === 'pt-BR' ? 'selected' : '' %>>Português (Brasil)</option>
+                <option value="en-US" <%= language === 'en-US' ? 'selected' : '' %>>English (US)</option>
+                <option value="es-ES" <%= language === 'es-ES' ? 'selected' : '' %>>Español</option>
+                <option value="fr-FR" <%= language === 'fr-FR' ? 'selected' : '' %>>Français</option>
+                <option value="de-DE" <%= language === 'de-DE' ? 'selected' : '' %>>Deutsch</option>
+                <option value="it-IT" <%= language === 'it-IT' ? 'selected' : '' %>>Italiano</option>
+                <option value="ja-JP" <%= language === 'ja-JP' ? 'selected' : '' %>>日本語</option>
+                <option value="ko-KR" <%= language === 'ko-KR' ? 'selected' : '' %>>한국어</option>
+                <option value="ru-RU" <%= language === 'ru-RU' ? 'selected' : '' %>>Русский</option>
+                <option value="zh-CN" <%= language === 'zh-CN' ? 'selected' : '' %>>中文 (简体)</option>
+            </select>
+        </div>
+    </div>
+</nav> 

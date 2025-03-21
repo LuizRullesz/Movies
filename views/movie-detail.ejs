@@ -1,0 +1,66 @@
+<div class="movie-detail">
+    <div class="movie-poster">
+        <img src="<%= movie.poster_path ? IMAGE_BASE_URL + movie.poster_path : 'https://via.placeholder.com/300x450?text=No+Image' %>" 
+             alt="<%= movie.title %>">
+    </div>
+    
+    <div class="movie-info">
+        <h1><%= movie.title %></h1>
+        
+        <div class="movie-meta">
+            <% if (movie.release_date) { %>
+                <span><%= language === 'pt-BR' ? 'Lançamento:' : 'Release:' %> <%= new Date(movie.release_date).toLocaleDateString(language) %></span>
+            <% } %>
+            <% if (movie.runtime) { %>
+                <span><%= Math.floor(movie.runtime / 60) %>h <%= movie.runtime % 60 %>min</span>
+            <% } %>
+            <span>⭐ <%= movie.vote_average.toFixed(1) %></span>
+        </div>
+        
+        <% if (movie.genres && movie.genres.length > 0) { %>
+            <div class="genres">
+                <% movie.genres.forEach(genre => { %>
+                    <span class="genre"><%= genre.name %></span>
+                <% }); %>
+            </div>
+        <% } %>
+        
+        <% if (movie.overview) { %>
+            <h3><%= language === 'pt-BR' ? 'Sinopse' : 'Overview' %></h3>
+            <p class="overview"><%= movie.overview %></p>
+        <% } %>
+        
+        <% if (movie.credits && movie.credits.cast && movie.credits.cast.length > 0) { %>
+            <div class="cast-list">
+                <h3><%= language === 'pt-BR' ? 'Elenco Principal' : 'Main Cast' %></h3>
+                <ul>
+                    <% movie.credits.cast.slice(0, 5).forEach(actor => { %>
+                        <li><%= actor.name %> <%= actor.character ? `como ${actor.character}` : '' %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        <% } %>
+        
+        <% if (movie.videos && movie.videos.results && movie.videos.results.length > 0) { %>
+            <div class="trailer">
+                <h3><%= language === 'pt-BR' ? 'Trailer' : 'Trailer' %></h3>
+                <div class="trailer-container">
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/<%= movie.videos.results[0].key %>" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        <% } %>
+        
+        <div class="back-button">
+            <a href="/?lang=<%= language %>" class="btn">
+                <%= language === 'pt-BR' ? 'Voltar para Home' : 'Back to Home' %>
+            </a>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,34 @@
+<!-- Cabeçalho de resultados de busca -->
+<h2 class="section-title">
+    <%= language === 'pt-BR' ? 'Resultados para' : 'Results for' %>: "<%= query %>"
+</h2>
+
+<!-- Grid de Resultados -->
+<div class="grid">
+    <% if (results.length === 0) { %>
+        <div class="no-results">
+            <%= language === 'pt-BR' ? 'Nenhum resultado encontrado para' : 'No results found for' %> "<%= query %>"
+        </div>
+    <% } else { %>
+        <% results.forEach(item => { %>
+            <a href="/<%= item.media_type %>/<%= item.id %>?lang=<%= language %>" class="movie-card">
+                <img src="<%= item.poster_path ? IMAGE_BASE_URL + item.poster_path : (item.backdrop_path ? IMAGE_BASE_URL + item.backdrop_path : 'https://via.placeholder.com/300x450?text=No+Image') %>" 
+                     alt="<%= item.title || item.name %>">
+                <div class="card-content">
+                    <h3><%= item.title || item.name %></h3>
+                    <div class="rating">
+                        <span><%= item.media_type === 'movie' ? (language === 'pt-BR' ? 'Filme' : 'Movie') : (language === 'pt-BR' ? 'Série' : 'TV Show') %></span>
+                        <span>⭐ <%= item.vote_average ? item.vote_average.toFixed(1) : 'N/A' %></span>
+                    </div>
+                </div>
+            </a>
+        <% }); %>
+    <% } %>
+</div>
+
+<!-- Voltar para Home -->
+<div class="back-button">
+    <a href="/?lang=<%= language %>" class="btn">
+        <%= language === 'pt-BR' ? 'Voltar para Home' : 'Back to Home' %>
+    </a>
+</div> 

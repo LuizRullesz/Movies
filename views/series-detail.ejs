@@ -1,0 +1,83 @@
+<div class="movie-detail">
+    <div class="movie-poster">
+        <img src="<%= series.poster_path ? IMAGE_BASE_URL + series.poster_path : 'https://via.placeholder.com/300x450?text=No+Image' %>" 
+             alt="<%= series.name %>">
+    </div>
+    
+    <div class="movie-info">
+        <h1><%= series.name %></h1>
+        
+        <div class="movie-meta">
+            <% if (series.first_air_date) { %>
+                <span><%= language === 'pt-BR' ? 'Lançamento:' : 'First Air Date:' %> <%= new Date(series.first_air_date).toLocaleDateString(language) %></span>
+            <% } %>
+            <% if (series.number_of_seasons) { %>
+                <span><%= series.number_of_seasons %> <%= language === 'pt-BR' ? 'temporada(s)' : 'season(s)' %></span>
+            <% } %>
+            <span>⭐ <%= series.vote_average.toFixed(1) %></span>
+        </div>
+        
+        <% if (series.genres && series.genres.length > 0) { %>
+            <div class="genres">
+                <% series.genres.forEach(genre => { %>
+                    <span class="genre"><%= genre.name %></span>
+                <% }); %>
+            </div>
+        <% } %>
+        
+        <% if (series.overview) { %>
+            <h3><%= language === 'pt-BR' ? 'Sinopse' : 'Overview' %></h3>
+            <p class="overview"><%= series.overview %></p>
+        <% } %>
+        
+        <% if (series.seasons && series.seasons.length > 0) { %>
+            <div class="seasons-list">
+                <h3><%= language === 'pt-BR' ? 'Temporadas' : 'Seasons' %></h3>
+                <ul>
+                    <% series.seasons.forEach(season => { %>
+                        <li>
+                            <%= season.name %> 
+                            (<%= season.episode_count %> <%= language === 'pt-BR' ? 'episódios' : 'episodes' %>)
+                            <% if (season.air_date) { %>
+                               - <%= new Date(season.air_date).toLocaleDateString(language) %>
+                            <% } %>
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+        <% } %>
+        
+        <% if (series.credits && series.credits.cast && series.credits.cast.length > 0) { %>
+            <div class="cast-list">
+                <h3><%= language === 'pt-BR' ? 'Elenco Principal' : 'Main Cast' %></h3>
+                <ul>
+                    <% series.credits.cast.slice(0, 5).forEach(actor => { %>
+                        <li><%= actor.name %> <%= actor.character ? `como ${actor.character}` : '' %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        <% } %>
+        
+        <% if (series.videos && series.videos.results && series.videos.results.length > 0) { %>
+            <div class="trailer">
+                <h3><%= language === 'pt-BR' ? 'Trailer' : 'Trailer' %></h3>
+                <div class="trailer-container">
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/<%= series.videos.results[0].key %>" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        <% } %>
+        
+        <div class="back-button">
+            <a href="/?lang=<%= language %>" class="btn">
+                <%= language === 'pt-BR' ? 'Voltar para Home' : 'Back to Home' %>
+            </a>
+        </div>
+    </div>
+</div> 

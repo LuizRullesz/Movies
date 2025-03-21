@@ -1,0 +1,31 @@
+<!-- Mensagem de resultados -->
+<% if (type !== 'all') { %>
+    <h2 class="section-title">
+        <%= type === 'movie' ? (language === 'pt-BR' ? 'Filmes' : 'Movies') : (language === 'pt-BR' ? 'Séries' : 'TV Shows') %>
+    </h2>
+<% } %>
+
+<!-- Grid de Filmes/Séries -->
+<div class="grid">
+    <% movies.forEach(movie => { %>
+        <a href="/<%= movie.title ? 'movie' : 'tv' %>/<%= movie.id %>?lang=<%= language %>" class="movie-card">
+            <img src="<%= movie.poster_path ? IMAGE_BASE_URL + movie.poster_path : 'https://via.placeholder.com/300x450?text=No+Image' %>" 
+                 alt="<%= movie.title || movie.name %>">
+            <div class="card-content">
+                <h3><%= movie.title || movie.name %></h3>
+                <div class="rating">⭐ <%= movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A' %></div>
+            </div>
+        </a>
+    <% }) %>
+</div>
+
+<!-- Paginação -->
+<div class="pagination">
+    <button id="prev-page" <%= page <= 1 ? 'disabled' : '' %>>
+        <%= language === 'pt-BR' ? 'Anterior' : 'Previous' %>
+    </button>
+    <span class="current-page"><%= page %> / <%= Math.min(totalPages, 1000) %></span>
+    <button id="next-page" <%= page >= Math.min(totalPages, 1000) ? 'disabled' : '' %>>
+        <%= language === 'pt-BR' ? 'Próxima' : 'Next' %>
+    </button>
+</div> 

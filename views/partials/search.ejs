@@ -1,0 +1,11 @@
+<div class="search-container">
+    <div class="container">
+        <form id="search-form" action="/search" method="GET">
+            <div class="search-box">
+                <input type="text" id="search-input" name="query" placeholder="<%= language === 'pt-BR' ? 'Buscar filmes ou séries...' : 'Search movies or TV shows...' %>" value="<%= typeof query !== 'undefined' ? query : '' %>">
+                <input type="hidden" name="lang" value="<%= language %>">
+                <button type="submit">🔍</button>
+            </div>
+        </form>
+    </div>
+</div> 

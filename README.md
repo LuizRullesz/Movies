@@ -2,6 +2,8 @@
 
 Um site para descobrir e explorar filmes e séries usando a API do TMDB.
 
+Link do site rodando: http://node1.lunes.host:2191
+
 ## Funcionalidades
 
 - Listagem de filmes e séries populares

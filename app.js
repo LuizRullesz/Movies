@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 2191;
-const API_KEY = process.env.TMDB_API_KEY || '602520b55f5bb58043d6254e177ad2d3';
+const API_KEY = process.env.TMDB_API_KEY || 'SUA_API_KEY';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
